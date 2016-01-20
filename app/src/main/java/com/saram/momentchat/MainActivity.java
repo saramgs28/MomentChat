@@ -8,34 +8,76 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.VideoView;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChangeListener {
 
-    private SeekBar seekBar;
-    Intent i; //Porque se abrira una actividad
-    final static int cons=0;
-    Bitmap bmp;
-    ImageView img;
-    VideoView video;
+    private static SeekBar myseekBar;
+    private static Intent i; //Porque se abrira una actividad
+    final static int cons = 0;
+    private static Bitmap bmp;
+    private static ImageView img;
+    private static VideoView video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        img=(ImageView)findViewById(R.id.imageview_1); //Para sobreescribir la imagen que viene por defecto.R me lleva a los recursos
+        init();
+        seekBar();
+    }
+
+    public void init(){
+        img = (ImageView) findViewById(R.id.imageview1);
+        video = (VideoView) findViewById(R.id.video);
+    }
+
+    public void seekBar()
+    {
+        myseekBar = (SeekBar) findViewById(R.id.seekbar1);
+        myseekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener(){ //???????
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
+                        if (seekBar.getProgress() == myseekBar.getMax()) {
+                            i= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            //i= new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                            startActivityForResult(i, cons);
+                        }
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                    }
+                });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data); //No alterar lo que esta escrito. Si no lo pongo, no hace el contenido
+        if (resultCode == Activity.RESULT_OK) {
+            Bundle ext = data.getExtras();
+            bmp =(Bitmap)ext.get("data"); //Guarda la info en un bitmap
+            img.setImageBitmap(bmp);
+            myseekBar.setProgress(0);
+        }
+    }
+}
+   /* @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        img=(ImageView)findViewById(R.id.imageview1); //Para sobreescribir la imagen que viene por defecto.R me lleva a los recursos
         video=(VideoView)findViewById(R.id.video);
-        //String urlpath = "android.resource://"+getPackageName()+"/"+R.raw.video//Para decir donde esta el video. Esta en la carpeta raw
         //initialize our variable.  Seekbar para habilitar swipe
         seekBar = (SeekBar) findViewById(R.id.seekbar1);
         seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                 //se tendria que desvanecer la imagen de fondo
-                if (seekBar.getProgress()==seekBar.getMax())
-                {
+                if (seekBar.getProgress() == seekBar.getMax()) {
                     //tienes que encender la camara
                     //Toast.makeText(getApplicationContext(), "CAMARA Y ACCION", Toast.LENGTH_SHORT).show();
                     i= new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //se crea un intent que hace referencia a una actividad de android camara
@@ -44,21 +86,21 @@ public class MainActivity extends AppCompatActivity{
             }
 
             //para tener acceso a la informacion de la camara. metodo que hay que sobreescribir
-            // @Override
-            protected void OnActivityResult(int requestCode, int resultCode, Intent data)
-            {
+            @Override
+            protected void OnActivityResult(int requestCode, int resultCode, Intent data) {
                 //para no alterar lo que ya esta escrito
                 //super.OnActivityResult(requestCode, resultCode, data);
-                if(resultCode== Activity.RESULT_OK){
-                    Bundle ext=data.getExtras();
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle ext = data.getExtras();
                     //capturamos la foto. obtenemos la info de la imagen y la guarda en un bitmap
-                    bmp=(Bitmap)ext.get("data");
+                    bmp =(Bitmap)ext.get("data");
                     //ahora ponemos la imagen en el imageview creado accediendo a ello
                     img.setImageBitmap(bmp);
+
                     seekBar.setProgress(0); //inicializamos la barra otra vez
                 }
-
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 //cuando tocas tienes que ver la foto por 3 segundos
@@ -68,7 +110,6 @@ public class MainActivity extends AppCompatActivity{
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //cuando sueltas tienes que dejar de ver la imagen otra vez
             }
-
         });
     }
-}
+}*/
