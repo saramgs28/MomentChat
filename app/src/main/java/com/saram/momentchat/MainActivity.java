@@ -10,6 +10,37 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.VideoView;
 
+/*
+class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+    private static MyApi myApiService = null;
+    private Context context;
+
+    @Override
+    protected String doInBackground(Pair<Context, String>... params) {
+        if(myApiService == null) {  // Only do this once
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                    .setRootUrl("https://momentchat-7c603.appspot.com/_ah/api/");
+            // end options for devappserver
+
+            myApiService = builder.build();
+        }
+
+        context = params[0].first;
+        String name = params[0].second;
+
+        try {
+            return myApiService.sayHi(name).execute().getData();
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+    }
+}
+*/
 public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChangeListener {
 
     private static SeekBar myseekBar;
@@ -26,13 +57,44 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
 
         init();
         seekBar();
+       // playVideo();
+
+       // new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
     public void init(){
         img = (ImageView) findViewById(R.id.imageview1);
-        video = (VideoView) findViewById(R.id.video);
+      //  video = (VideoView) findViewById(R.id.video);
     }
 
+    /* public void playVideo(){
+        video.setVideoPath("http://techslides.com/demos/sample-videos/small.mp4");
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(video);
+        video.setMediaController(mediaController);
+        video.requestFocus();
+        video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            // Close the progress bar and play the video
+            public void onPrepared(MediaPlayer mp) {
+                video.start();
+            }
+        });
+        try {
+            // Start the MediaController
+            MediaController mediacontroller = new MediaController(
+                    VideoViewActivity.this);
+            mediacontroller.setAnchorView(videoview);
+            // Get the URL from String VideoURL
+            Uri video = Uri.parse(VideoURL);
+            videoview.setMediaController(mediacontroller);
+            videoview.setVideoURI(video);
+
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+    }
+*/
     public void seekBar()
     {
         myseekBar = (SeekBar) findViewById(R.id.seekbar1);
