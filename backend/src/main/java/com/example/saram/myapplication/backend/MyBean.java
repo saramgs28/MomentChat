@@ -13,4 +13,3 @@ public class MyBean {
         myData = data;
     }
 }
-//Crear clase User para login

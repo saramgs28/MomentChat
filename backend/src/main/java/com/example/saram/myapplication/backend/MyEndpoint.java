@@ -35,7 +35,6 @@ public class MyEndpoint {
     @ApiMethod(name="login")
     public MyBean login(@Named("name") String name){
         MyBean resp = new MyBean();
-        //Aqui es donde voy a ver si el user y password son correctos
         if (name.equals("Sarah"))
         {
             resp.setData("Hiiii "+ name);
