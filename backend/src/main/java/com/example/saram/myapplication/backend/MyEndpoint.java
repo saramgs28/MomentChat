@@ -37,7 +37,14 @@ public class MyEndpoint {
         MyBean resp = new MyBean();
         if (name.equals("Sarah"))
         {
-            resp.setData("Hiiii "+ name);
+            resp.setData("Creating the new entity... "+ name);
+            //Creating an entity with Java Low-level API
+           /* DatastoreService datastore= DatastoreServiceFactory.getDatastoreService();
+            Entity newuser =new Entity("User");
+            newuser.setproperty("username","Prueba1");
+            newuser.setproperty("password","LO CONSEGUI");
+            datastore.put(newuser);*/
+
         }else
         {
             resp.setData("Hola "+ name);
