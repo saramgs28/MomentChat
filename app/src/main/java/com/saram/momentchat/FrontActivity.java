@@ -31,7 +31,8 @@ public class FrontActivity extends AppCompatActivity implements OnClickListener 
             act=new Intent(this,signin.class);
         }
         if(v == button_login){
-            act=new Intent(this,signin.class);
+            act=new Intent(this,MainActivity.class);
+            //act=new Intent(this,Login.class);
         }
         startActivity(act);
     }

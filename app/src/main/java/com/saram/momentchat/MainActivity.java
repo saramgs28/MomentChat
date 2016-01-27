@@ -8,39 +8,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.VideoView;
 
-/*
-class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
-    private static MyApi myApiService = null;
-    private Context context;
+import java.util.ArrayList;
 
-    @Override
-    protected String doInBackground(Pair<Context, String>... params) {
-        if(myApiService == null) {  // Only do this once
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://momentchat-7c603.appspot.com/_ah/api/");
-            // end options for devappserver
-
-            myApiService = builder.build();
-        }
-
-        context = params[0].first;
-        String name = params[0].second;
-
-        try {
-            return myApiService.sayHi(name).execute().getData();
-        } catch (IOException e) {
-            return e.getMessage();
-        }
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-    }
-}
-*/
 public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChangeListener {
 
     private static SeekBar myseekBar;
@@ -48,7 +18,6 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
     final static int cons = 0;
     private static Bitmap bmp;
     private static ImageView img;
-    private static VideoView video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +27,6 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
         init();
         seekBar();
        // playVideo();
-
-       // new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
     public void init(){
@@ -99,13 +66,13 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
     {
         myseekBar = (SeekBar) findViewById(R.id.seekbar1);
         myseekBar.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener(){ //???????
+                new SeekBar.OnSeekBarChangeListener(){
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
                         if (seekBar.getProgress() == myseekBar.getMax()) {
-                            i= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            i= new Intent(MediaStore.ACTION_IMAGE_CAPTURE); //Se abre la camara
                             //i= new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                            startActivityForResult(i, cons);
+                            startActivityForResult(i, cons);//para recibir datos de esta actividad
                         }
                     }
                     @Override
@@ -116,9 +83,11 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
                     }
                 });
     }
+    //UNA SOLA IMAGENNNNNNNNNNNNNNN
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data); //No alterar lo que esta escrito. Si no lo pongo, no hace el contenido
+        ArrayList<Object> listImage = null;
         if (resultCode == Activity.RESULT_OK) {
             Bundle ext = data.getExtras();
             bmp =(Bitmap)ext.get("data"); //Guarda la info en un bitmap
@@ -127,6 +96,7 @@ public class MainActivity extends AppCompatActivity{ //implements OnSeekBarChang
         }
     }
 }
+//VIDEOOOOOOOOOOOOOOO
    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

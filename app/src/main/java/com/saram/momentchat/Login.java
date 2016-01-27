@@ -57,27 +57,50 @@ public class Login extends AppCompatActivity implements OnClickListener {
     private EditText editTextPassword;
 
     private Button button_login;
+    private Button button_cancel;
     Intent act = new Intent(this, MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        button_login = (Button) findViewById(R.id.buttonlogin);
-
-        button_login.setOnClickListener(this);
-
-        editTextUsername = (EditText) findViewById(R.id.id_username);
-        editTextPassword = (EditText) findViewById(R.id.id_password);
+        init();
     }
 
     @Override
     public void onClick(View v) {
 
+        if(v == button_login){
+            LoginUser();
+        }
+        if(v == button_cancel){
+            act = new Intent(this, FrontActivity.class);
+        }
+        startActivity(act);
+    }
+
+    private void init(){
+        button_login = (Button) findViewById(R.id.buttonlogin);
+        button_login.setOnClickListener(this);
+
+        button_cancel = (Button) findViewById(R.id.button_cancel);
+        button_cancel.setOnClickListener(this);
+
+        editTextUsername = (EditText) findViewById(R.id.id_username);
+        editTextPassword = (EditText) findViewById(R.id.id_password);
+    }
+
+    private void LoginUser(){
         final String username = editTextUsername.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
 
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, username));
+        //SI TODO SALE BIEN MANDAME UNA TOAST
+
+        //display in long period of time
+        Toast.makeText(getApplicationContext(), "HI  "+username+" WHAT'S UP?",
+                Toast.LENGTH_LONG).show();
+
+        act = new Intent(this, MainActivity.class);
     }
 }

@@ -27,11 +27,21 @@
         android:id="@+id/buttonlogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="163dp"
+        android:layout_marginBottom="156dp"
         android:onClick="NextActivity"
-        android:text="Login" />
+        android:text="Login"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="NextActivity"
+        android:text="Cancel"
+        android:layout_alignTop="@+id/buttonlogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp" />
 
     <EditText
         android:id="@+id/id_username"
