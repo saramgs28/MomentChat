@@ -34,15 +34,29 @@
         android:text="Login" />
 
     <Button
-        android:id="@+id/buttonsignin"
+        android:id="@+id/buttonimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonlogin"
-        android:layout_alignStart="@+id/buttonlogin"
-        android:layout_alignTop="@+id/buttonlogin"
-        android:layout_marginTop="73dp"
         android:onClick="NextActivity"
-        android:text="Sign in" />
+        android:text="Image"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button_video"
+        android:layout_toEndOf="@+id/button_video" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video"
+        android:id="@+id/button_video"
+        android:layout_below="@+id/button_cancel"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Audio"
+        android:id="@+id/button_audio" />
 
 </RelativeLayout>
 

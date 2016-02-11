@@ -1,23 +1,13 @@
 package com.saram.momentchat;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.example.saram.myapplication.backend.myApi.MyApi;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-
-import java.io.IOException;
-
+/*
 class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     //private static MyApi myApiService = null;
     private static MyApi myApiService = null;
@@ -28,7 +18,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         if(myApiService == null) {  // Only do this once
             /*MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://momentchat-1201.appspot.com/_ah/api/");*/
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+       /*     MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://momentchat-1201.appspot.com/_ah/api/");
 
             myApiService = builder.build();
@@ -50,7 +40,7 @@ class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> 
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
     }
 }
-
+*/
 public class Login extends AppCompatActivity implements OnClickListener {
 
     private EditText editTextUsername;
@@ -58,6 +48,8 @@ public class Login extends AppCompatActivity implements OnClickListener {
 
     private Button button_login;
     private Button button_cancel;
+    private Button button_audio;
+    private Button button_video;
     Intent act = new Intent(this, MainActivity.class);
 
     @Override
@@ -71,10 +63,17 @@ public class Login extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
 
         if(v == button_login){
-            LoginUser();
+            //LoginUser();
+            act = new Intent(this, MainActivity.class);
         }
         if(v == button_cancel){
             act = new Intent(this, FrontActivity.class);
+        }
+        if(v == button_audio){
+         //   act = new Intent(this, MainAudio.class);
+        }
+        if(v == button_video){
+          //  act = new Intent(this, MainVideo.class);
         }
         startActivity(act);
     }
@@ -86,21 +85,26 @@ public class Login extends AppCompatActivity implements OnClickListener {
         button_cancel = (Button) findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(this);
 
+        button_audio = (Button) findViewById(R.id.button_audio);
+        button_audio.setOnClickListener(this);
+
+        button_video = (Button) findViewById(R.id.button_video);
+        button_video.setOnClickListener(this);
+
         editTextUsername = (EditText) findViewById(R.id.id_username);
         editTextPassword = (EditText) findViewById(R.id.id_password);
     }
 
-    private void LoginUser(){
+    /*private void LoginUser(){
         final String username = editTextUsername.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
 
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, username));
-        //SI TODO SALE BIEN MANDAME UNA TOAST
 
         //display in long period of time
         Toast.makeText(getApplicationContext(), "HI  "+username+" WHAT'S UP?",
                 Toast.LENGTH_LONG).show();
 
         act = new Intent(this, MainActivity.class);
-    }
+    }*/
 }

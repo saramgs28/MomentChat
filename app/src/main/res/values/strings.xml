@@ -4,4 +4,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_signin">signin</string>
     <string name="title_activity_front">FrontActivity</string>
+    <string name="title_activity_main_video">MainVideo</string>
+    <string name="title_activity_main_audio">MainAudio</string>
 </resources>

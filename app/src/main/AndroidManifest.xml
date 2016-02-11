@@ -17,8 +17,7 @@
         <activity
             android:name=".Login"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -37,6 +36,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainVideo"
+            android:label="@string/title_activity_main_video"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainAudio"
+            android:label="@string/title_activity_main_audio"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
