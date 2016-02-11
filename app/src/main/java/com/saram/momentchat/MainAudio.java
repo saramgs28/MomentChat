@@ -22,7 +22,7 @@ public class MainAudio extends Activity implements OnCompletionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_audio);
 
         tv1 = (TextView) this.findViewById(R.id.textView1);
         b1 = (Button) findViewById(R.id.button1);

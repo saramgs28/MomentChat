@@ -44,7 +44,7 @@ public class FrontActivity extends AppCompatActivity implements OnClickListener 
             act = new Intent(this, MainVideo.class);
         }
         if(v == button_audio){
-            //   act = new Intent(this, MainAudio.class);
+            act = new Intent(this, MainAudio.class);
         }
         startActivity(act);
     }
